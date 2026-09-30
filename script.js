@@ -24,6 +24,7 @@ let currentTurn = 'X';
 let roundEnded = false;
 let botThinking = false;
 let botTimer;
+let nextRoundTimer;
 let roundToken = 0;
 let scores = { player: 0, opponent: 0, draws: 0 };
 
@@ -91,6 +92,7 @@ function startGame() {
 
 function showSetup() {
   clearTimeout(botTimer);
+  clearTimeout(nextRoundTimer);
   roundToken += 1;
   botThinking = false;
   roundEnded = true;
@@ -101,6 +103,7 @@ function showSetup() {
 
 function resetRound() {
   clearTimeout(botTimer);
+  clearTimeout(nextRoundTimer);
   roundToken += 1;
   const thisRound = roundToken;
   board = Array(9).fill('');
@@ -250,6 +253,10 @@ function finishRound(result) {
   turnMessage.classList.add('is-result');
   renderScores();
   renderBoard(result.line);
+  const finishedRound = roundToken;
+  nextRoundTimer = window.setTimeout(() => {
+    if (finishedRound === roundToken && !gameScreen.classList.contains('is-hidden')) resetRound();
+  }, 1800);
 }
 
 function renderBoard(winningLine = []) {

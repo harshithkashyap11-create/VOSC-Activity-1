@@ -4,6 +4,8 @@
 
 A small, browser-based Tic-Tac-Toe game. Play a quick match against the computer or take turns with a friend on the same device.
 
+**Version:** v1.0.0
+
 ## Files
 
 - `index.html` — game screens and controls.
@@ -19,7 +21,7 @@ Open `index.html` in a modern browser. No install or build step is needed.
 1. Choose **Vs computer** or **With a friend**.
 2. Against the computer, select a difficulty and choose X or O. If you choose O, the computer makes the opening move as X.
 3. Select an empty square to place your mark. You can also use the number keys 1–9, moving left to right and top to bottom.
-4. Get three marks in a row to win. Use **Restart round** to start over while keeping the match score, or **Change game** to return to the choices.
+4. Get three marks in a row to win. After the result appears, the next round starts automatically. Use **Restart round** to start sooner while keeping the match score, or **Change game** to return to the choices.
 
 ## Computer opponent
 
