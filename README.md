@@ -6,6 +6,8 @@ A small, browser-based Tic-Tac-Toe game. Play a quick match against the computer
 
 **Version:** v1.0.0
 
+**Play online:** [Your Move](https://harshithkashyap11-create.github.io/VOSC-Activity-1/)
+
 ## Files
 
 - `index.html` — game screens and controls.
