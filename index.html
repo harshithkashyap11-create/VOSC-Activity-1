@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4efe5" />
+    <meta name="description" content="A thoughtful little game of Tic-Tac-Toe. Pick a side, choose your opponent, and make your move." />
+    <title>Your Move — Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="masthead">
+        <a class="wordmark" href="#setup" aria-label="Your Move, start screen">YOUR <span>MOVE</span></a>
+        <p class="masthead-note">TIC-TAC-TOE <span aria-hidden="true">✳</span> A SMALL GAME OF WITS</p>
+      </header>
+
+      <section class="screen setup-screen" id="setup" aria-labelledby="setup-title">
+        <div class="setup-copy">
+          <p class="eyebrow"><span class="eyebrow-rule"></span> TAKE A SEAT, MAKE A MOVE</p>
+          <h1 id="setup-title">Small board.<br /><span>Big moves.</span></h1>
+          <p class="intro">A familiar little game with a worthy opponent. How would you like to play?</p>
+
+          <fieldset class="choice-group mode-choice">
+            <legend>Choose your game</legend>
+            <div class="mode-options">
+              <button class="mode-card is-selected" type="button" data-mode="computer" aria-pressed="true">
+                <span class="mode-icon" aria-hidden="true">✳</span>
+                <span class="mode-title">Vs computer</span>
+                <span class="mode-description">A clever opponent, your call on difficulty.</span>
+              </button>
+              <button class="mode-card" type="button" data-mode="friend" aria-pressed="false">
+                <span class="mode-icon friend-icon" aria-hidden="true">↔</span>
+                <span class="mode-title">With a friend</span>
+                <span class="mode-description">One board, two players, take turns.</span>
+              </button>
+            </div>
+          </fieldset>
+
+          <fieldset class="choice-group difficulty-choice" id="difficulty-group">
+            <legend>Pick a pace</legend>
+            <div class="difficulty-options" role="group" aria-label="Computer difficulty">
+              <button class="difficulty-button" type="button" data-difficulty="easy" aria-pressed="false">
+                <span class="difficulty-name">Easy</span><span class="difficulty-detail">A little luck</span>
+              </button>
+              <button class="difficulty-button is-selected" type="button" data-difficulty="medium" aria-pressed="true">
+                <span class="difficulty-name">Medium</span><span class="difficulty-detail">Thinks ahead</span>
+              </button>
+              <button class="difficulty-button" type="button" data-difficulty="hard" aria-pressed="false">
+                <span class="difficulty-name">Hard</span><span class="difficulty-detail">Never backs down</span>
+              </button>
+            </div>
+          </fieldset>
+
+          <fieldset class="choice-group mark-choice" id="mark-group">
+            <legend>Choose your mark</legend>
+            <div class="mark-options" role="group" aria-label="Your mark">
+              <button class="mark-button is-selected" type="button" data-mark="X" aria-pressed="true" aria-label="Play as X">X</button>
+              <button class="mark-button mark-o" type="button" data-mark="O" aria-pressed="false" aria-label="Play as O">O</button>
+            </div>
+          </fieldset>
+
+          <button class="primary-button start-button" id="start-game" type="button">Let’s play <span aria-hidden="true">→</span></button>
+          <p class="setup-footnote">No accounts. No fuss. Just nine squares.</p>
+        </div>
+
+        <aside class="board-art" aria-hidden="true">
+          <div class="art-note"><span>FIG. 01</span><span>THE PLAYING FIELD</span></div>
+          <div class="art-board">
+            <span class="art-cell x-mark">×</span><span class="art-cell o-mark">○</span><span class="art-cell x-mark">×</span>
+            <span class="art-cell o-mark">○</span><span class="art-cell x-mark">×</span><span class="art-cell empty-art"></span>
+            <span class="art-cell x-mark">×</span><span class="art-cell empty-art"></span><span class="art-cell o-mark">○</span>
+          </div>
+          <div class="art-caption"><span>01 — 09</span><span>EVERY SQUARE HAS A STORY</span></div>
+        </aside>
+      </section>
+
+      <section class="screen game-screen is-hidden" id="game" aria-labelledby="game-title">
+        <div class="game-heading">
+          <button class="text-button back-button" id="change-game" type="button"><span aria-hidden="true">←</span> Change game</button>
+          <p class="eyebrow"><span class="eyebrow-rule"></span> YOUR TABLE IS READY</p>
+          <h1 id="game-title">Your <span>move.</span></h1>
+          <p class="game-subtitle" id="game-subtitle">You’re X · Medium · vs Computer</p>
+        </div>
+
+        <div class="match-card">
+          <section class="scoreboard" aria-label="Match score">
+            <div class="score-item score-you"><span class="score-label" id="player-one-label">YOU (X)</span><strong id="player-one-score">0</strong></div>
+            <div class="score-item score-draws"><span class="score-label">DRAWS</span><strong id="draw-score">0</strong></div>
+            <div class="score-item score-opponent"><span class="score-label" id="player-two-label">BOT (O)</span><strong id="player-two-score">0</strong></div>
+          </section>
+
+          <p class="turn-message" id="turn-message" role="status" aria-live="polite" aria-atomic="true">Your turn</p>
+
+          <div class="board-wrap">
+            <div class="game-board" id="game-board" role="group" aria-label="Tic-Tac-Toe board">
+              <button class="cell" type="button" data-cell="0" aria-label="Top left, empty"></button>
+              <button class="cell" type="button" data-cell="1" aria-label="Top middle, empty"></button>
+              <button class="cell" type="button" data-cell="2" aria-label="Top right, empty"></button>
+              <button class="cell" type="button" data-cell="3" aria-label="Middle left, empty"></button>
+              <button class="cell" type="button" data-cell="4" aria-label="Center, empty"></button>
+              <button class="cell" type="button" data-cell="5" aria-label="Middle right, empty"></button>
+              <button class="cell" type="button" data-cell="6" aria-label="Bottom left, empty"></button>
+              <button class="cell" type="button" data-cell="7" aria-label="Bottom middle, empty"></button>
+              <button class="cell" type="button" data-cell="8" aria-label="Bottom right, empty"></button>
+            </div>
+          </div>
+
+          <div class="game-actions">
+            <button class="primary-button" id="restart-round" type="button">Restart round</button>
+            <button class="secondary-button" id="new-game" type="button">Change game</button>
+          </div>
+          <p class="keyboard-tip">A small shortcut: use <kbd>1</kbd>–<kbd>9</kbd> to pick a square.</p>
+        </div>
+        <p class="game-footer">YOUR MOVE <span>·</span> TAKE YOUR TIME</p>
+      </section>
+
+      <footer class="page-footer"><span>MADE FOR THE LOVE OF A GOOD GAME</span><span>VOSC · ACTIVITY 01</span></footer>
+    </main>
+  </body>
+</html>
